@@ -1,3 +1,15 @@
+/*
+ * Candidate
+ *
+ * COMP 1020 SECTION A01
+ * Simon Wermie
+ * Assignment 4, Question 1
+ * Jesse Rheault - 8019357
+ * August - 2025
+ *
+ * This is a class that represents the yard of all the trains and allows you to manage all of the 
+ * trains as well as all the people and luggage that are contained in the yard
+ */
 import java.util.ArrayList;
 
 public class TrainYard {

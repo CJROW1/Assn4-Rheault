@@ -1,3 +1,15 @@
+/*
+ * Candidate
+ *
+ * COMP 1020 SECTION A01
+ * Simon Wermie
+ * Assignment 4, Question 1
+ * Jesse Rheault - 8019357
+ * August - 2025
+ *
+ * This is a class that represents the entire train and manages all the different cars and the 
+ * ordering of these cars in the train using linked lists 
+ */
 public class Train {
 
     private String name;

@@ -1,3 +1,15 @@
+/*
+ * Candidate
+ *
+ * COMP 1020 SECTION A01
+ * Simon Wermie
+ * Assignment 4, Question 1
+ * Jesse Rheault - 8019357
+ * August - 2025
+ *
+ * This is a class that represents a luggage car and uses a interface for cars in order to manage 
+ * information about the luggage that is being carried by the car and the next car
+ */
 public class LuggageCar implements iTrainCar {
     
     private Luggage[][] storage;
