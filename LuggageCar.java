@@ -15,6 +15,7 @@ public class LuggageCar implements iTrainCar {
     private Luggage[][] storage;
     private iTrainCar next;
 
+    //constructor to initialize
     public LuggageCar(int numCompartments) {
 
     }
