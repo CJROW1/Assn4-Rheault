@@ -145,7 +145,7 @@ public class Train {
         if(head!=null){
             curr = head;
             while(curr != null && curr.getType().equals(type)){
-                if(curr.getNext != null)
+                if(curr.getNext() != null)
                 curr = curr.getNext();
             }
         }
