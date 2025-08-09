@@ -119,7 +119,7 @@ public class LuggageCar implements iTrainCar {
 
      //find a luggage using its label and return an array of their spots index
     public int[] locateLuggage(String label) {
-        int[] location = new int[2];
+        int[] location = {-1,-1};
         //check that the label is a valid label
         if(label == null){
             throw new IllegalArgumentException();
@@ -132,6 +132,9 @@ public class LuggageCar implements iTrainCar {
                     location[1] = j;
                 }
             }
+        }
+        if(location[0] == -1 && location[1] == -1){
+            location = null;
         }
         return location;
     }

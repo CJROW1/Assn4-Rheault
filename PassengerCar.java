@@ -82,7 +82,7 @@ public class PassengerCar implements iTrainCar {
 
     //find a passenger using their name and return an array of their spots index
     public int[] locatePassenger(String name) {
-        int[] location = new int[2];
+        int[] location = {-1,-1};
         //check that the name is a valid name
         if(name == null){
             throw new IllegalArgumentException();
@@ -95,6 +95,9 @@ public class PassengerCar implements iTrainCar {
                     location[1] = j;
                 }
             }
+        }
+        if(location[0] == -1 && location[1] == -1){
+            location = null;
         }
         return location;
     }
