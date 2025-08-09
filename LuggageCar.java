@@ -63,13 +63,13 @@ public class LuggageCar implements iTrainCar {
 
     //initializes the compartment at a given index with a size for number of luggage slots
     //so long as the index and size are both valid inputs non negative or 0 for size
-    public boolean initializeCompartment(int index, int size) {
+    public boolean initializeCompartment(int index, int size)throws IllegalArgumentException {
         boolean initialized = false;
         if(index < 0 || index >= storage.length || size <=0 ){
             throw new IllegalArgumentException();
         }
         //check if already initialized
-        if(storage[index].length != 0){
+        if(storage[index] != null){
             throw new IllegalArgumentException();
         }else{
         //if the index exists and isnt initialized go and initialize it
