@@ -28,11 +28,12 @@ public class Train {
     }
 
     //add a car to the end of the train using the linked list
-    public void addCar(iTrainCar car) {
+    public void addCar(iTrainCar car)throws IllegalArgumentException {
         //check for null input parameters
         if(car == null){
             throw new IllegalArgumentException();
         }
+        car.setNext(null);
         //check if there is any elements in our linked list if not create a head
         if(head == null){
             head = car;
@@ -40,6 +41,7 @@ public class Train {
         iTrainCar curr = head;
         while(curr.getNext() != null){
             curr = curr.getNext();
+            
         }
         //set the next car to the new one
         curr.setNext(car);
@@ -59,7 +61,7 @@ public class Train {
             head = head.getNext();
             removed = true;
         }else{
-        while(curr.getNext() != null ){
+        while(curr.getNext() != null && !removed){
             //if the next car is the target save this one
             if(curr.getNext() == target){
                 curr.setNext(target.getNext());
@@ -73,7 +75,7 @@ public class Train {
     }
 
     //attach a linked list of train cars to the already existing linked list of train cars
-    public void attachCars(iTrainCar other) {
+    public void attachCars(iTrainCar other) throws IllegalArgumentException{
      //check for null input parameters
         if(other == null){
             throw new IllegalArgumentException();
@@ -99,7 +101,7 @@ public class Train {
         //itterate until the index and store the node right before it as well
         curr = head;
         if(index == 0){
-            head = null;
+            head = head.getNext();
         }else{
         for(int i = 0; i < index; i++){
             if(i == index -1){
@@ -118,6 +120,7 @@ public class Train {
     public iTrainCar detachAt(iTrainCar target) {
         iTrainCar curr = head;
         iTrainCar detached = null;
+        boolean finished = false;
         if(target == null || head == null){
         }else{
         //if the head is the target
@@ -125,11 +128,12 @@ public class Train {
             detached = head;
             head = null;
         }else{
-        while(curr.getNext() != null ){
+        while(curr.getNext() != null && !finished){
             //if the next car is the target save this one
             if(curr.getNext() == target){
-                detached = curr;
-                curr = null;
+                detached = target;
+                curr.setNext(null);
+                finished = true;
             }
             curr = curr.getNext();
         }//while
@@ -146,10 +150,6 @@ public class Train {
             while(curr.getNext() != null && !curr.getType().equals(type)){
                 curr = curr.getNext();
             }
-        }
-        //check to make sure that a matching type was actually found
-        if(!curr.getType().equals(type)){
-            curr = null;
         }
         return curr;
     }
@@ -173,7 +173,7 @@ public class Train {
             newCurr = newHead;
             while(inserted == false && newCurr.getNext() != null){
                 //if this current element has the same type but the next element isnt insert the element there
-                if(curr.getType() == newCurr.getType() && newCurr.getNext().getType() != curr.getType()){
+                if(curr.getType().equals(newCurr.getType()) && !newCurr.getNext().getType().equals(curr.getType())){
                     holder = newCurr.getNext();
                     newCurr.setNext(curr);
                     newCurr.getNext().setNext(holder);
@@ -210,7 +210,7 @@ public class Train {
     }
 
     //attempt to add a passenger and their luggage to the train will return true if it happens
-    public boolean addPassenger(Person p) {
+    public boolean addPassenger(Person p) throws IllegalArgumentException {
         boolean added = false;
         boolean luggageIn = false;
         if(p == null){
@@ -231,7 +231,7 @@ public class Train {
             }
         }
         //attempt to add their luggage now 
-        if(added){
+        if(added && p.getLuggages()!=null){
             //check for a passenger car 
             for(int i = 0; i < p.getLuggages().size(); i++){
                 curr = head;
@@ -279,7 +279,7 @@ public class Train {
             }
         }
         //attempt to add their luggage now 
-        if(removed){
+        if(removed && p.getLuggages() != null){
             //check for a passenger car 
             for(int i = 0; i < p.getLuggages().size(); i++){
                 curr = head;
@@ -359,6 +359,7 @@ public class Train {
     public int calculateMaxDistance() {
         iTrainCar curr = null;
         boolean found = false;
+        int length = 0;
         int fuelTot = 0;
         if(head!= null){
             curr = head;
@@ -370,7 +371,13 @@ public class Train {
                 curr = curr.getNext();
             }
         }
-        return fuelTot / (getLength() * 10);
+        length = getLength();
+        if(length == 0){
+            length = 1;
+        }else{
+            length *= 10;
+        }
+        return fuelTot / length;
     }
 
     //returns a formatted string showing the ordering of the cars
