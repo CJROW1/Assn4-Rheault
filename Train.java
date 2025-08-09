@@ -16,7 +16,7 @@ public class Train {
     private iTrainCar head;
 
     //constructor that sets the name for the train unless it is empty null or whitespace
-    public Train(String name) {
+    public Train(String name) throws IllegalArgumentException {
         if(name == null || name.trim().isEmpty()){
             throw new IllegalArgumentException();
         }
