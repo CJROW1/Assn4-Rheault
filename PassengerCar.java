@@ -51,7 +51,7 @@ public class PassengerCar implements iTrainCar {
         //passanger is not null so search for a seat and then assign them to that seat
         for(int i = 0; i < seats.length; i++){
             for(int j = 0; j < seats[i].length; j++){
-                if(seats[i][j] == null){
+                if(seats[i][j] == null && !boarded){
                     seats[i][j]= p;
                     p.board();
                     boarded = true;
@@ -71,7 +71,7 @@ public class PassengerCar implements iTrainCar {
             //passanger is not null so search for the person and remove them from the seat
             for(int i = 0; i < seats.length; i++){
                 for(int j = 0; j < seats[i].length; j++){
-                    if(seats[i][j] == p){
+                    if(seats[i][j] == p && !removed){
                         seats[i][j]= null;
                         removed = true;
                     }
@@ -90,7 +90,7 @@ public class PassengerCar implements iTrainCar {
         //the given name is valid so search for the person and store their location
         for(int i = 0; i < seats.length; i++){
             for(int j = 0; j < seats[i].length; j++){
-                if(seats[i][j].getName().equals(name)){
+                if(seats[i][j].getName().equals(name) && seats[i][j]!=null){
                     location[0] = i;
                     location[1] = j;
                 }
