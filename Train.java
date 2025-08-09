@@ -166,29 +166,29 @@ public class Train {
         if(head != null){
             curr = head;
             newHead = head;
-            newCurr = head;
+            newHead.setNext(null);
             //itterate through the old linked list and         
         while(curr.getNext() != null){
             inserted = false;
             newCurr = newHead;
-            while(inserted == false && newCurr.getNext() != null){
+            while(!inserted && newCurr.getNext() != null){
                 //if this current element has the same type but the next element isnt insert the element there
                 if(curr.getType().equals(newCurr.getType()) && !newCurr.getNext().getType().equals(curr.getType())){
                     holder = newCurr.getNext();
                     newCurr.setNext(curr);
-                    newCurr.getNext().setNext(holder);
+                    curr.setNext(holder);
                     inserted = true;
                 }
                 newCurr = newCurr.getNext();
             }
-            if(inserted == false){
+            if(!inserted){
                 //if the new string is less than the original check the head to see if it is the lowest
                 if(newCurr.getType().compareTo(curr.getType()) > 0){
                     //if the current element is less than the head then replace the head
                     if(newHead.getType().compareTo(curr.getType()) > 0){
                         holder = newHead;
                         newHead = curr;
-                        newHead.setNext(holder);
+                        curr.setNext(holder);
                     }else{ //the element is not less than the head so go look for the next element type
                         newCurr = newHead;
                         //itterate starting at head until you find the next type and then put the curr
@@ -198,12 +198,14 @@ public class Train {
                         }
                         holder = newCurr.getNext();
                         newCurr.setNext(curr);
-                        newCurr.getNext().setNext(holder);
+                        curr.setNext(holder);
                     }
                 }else{//if its not bigger then just set the current to be at the end of the new list
                     newCurr.setNext(curr);
+                    curr.setNext(null);
                 }
             }
+            curr = holder;
         }
         head = newHead; //set the sorted list to be the new list
     }
