@@ -31,7 +31,9 @@ public class LuggageCar implements iTrainCar {
         //itterate through all the rows of compartments and add how many luggage slots there are
         //in each row 
         for(int i = 0; i < storage.length; i++){
+            if(storage[i] != null){
             counter += storage[i].length;
+            }
         }
         return counter;
     }
@@ -40,11 +42,13 @@ public class LuggageCar implements iTrainCar {
         int weight = 0;
         //itterate through the 2d array and add to the total weight for every stored piece of luggage
         for(int i = 0; i < storage.length; i++){
+            if(storage[i] != null){
             for(int j = 0; j<storage[i].length; j++){
                 if(storage[i][j]!=null){
                 weight += storage[i][j].getWeight();
                 }
             }
+        }
         }
         return weight;
     }
@@ -88,11 +92,13 @@ public class LuggageCar implements iTrainCar {
         }
         //luggage is not null so search for a spot and then store it in that spot
         for(int i = 0; i < storage.length; i++){
+            if(storage[i] != null){
             for(int j = 0; j < storage[i].length; j++){
-                if(storage[i][j] == null){
+                if(storage[i][j] == null && !packed){
                     storage[i][j]= l;
                     packed = true;
                 }
+            }
             }
         }
         return packed;
@@ -107,12 +113,14 @@ public class LuggageCar implements iTrainCar {
             }
             //luugage is not null so search for the luggage and remove them from the seat
             for(int i = 0; i < storage.length; i++){
+                if(storage[i] != null){
                 for(int j = 0; j < storage[i].length; j++){
-                    if(storage[i][j] == l){
+                    if(storage[i][j] == l && !removed){
                         storage[i][j]= null;
                         removed = true;
                     }
                 }
+            }
             }
             return removed;
     }
@@ -120,17 +128,21 @@ public class LuggageCar implements iTrainCar {
      //find a luggage using its label and return an array of their spots index
     public int[] locateLuggage(String label) {
         int[] location = {-1,-1};
+        boolean located =false;
         //check that the label is a valid label
         if(label == null){
             throw new IllegalArgumentException();
         }
         //the given label is valid so search for the luggage and store its location
         for(int i = 0; i < storage.length; i++){
+            if(storage[i] != null){
             for(int j = 0; j < storage[i].length; j++){
-                if(storage[i][j].getLabel().equals(label)){
+                if(storage[i][j].getLabel().equals(label) && !located){
                     location[0] = i;
                     location[1] = j;
+                    located = true;
                 }
+            }
             }
         }
         if(location[0] == -1 && location[1] == -1){
@@ -145,13 +157,14 @@ public class LuggageCar implements iTrainCar {
         //itterate throw the MDA to gather all of the compartments in a string of their luggage
         for(int i = 0; i < storage.length; i++){
             contents += "Compartment "+ i + ": ";
-
+            if(storage[i] != null){
             for(int j = 0; j < storage[i].length; j++){
                 if(storage[i][j] != null){
                 contents += "[]";
                 }else{
                     contents += "__";
                 }
+            }
             }
             contents += "\n";
         }
@@ -162,10 +175,12 @@ public class LuggageCar implements iTrainCar {
         int counter = 0;
         //itterate through all the compartments and increase count whenever a luggage is in a spot
         for(int i = 0; i < storage.length; i++){
+            if(storage[i] != null){
             for(int j = 0; j < storage[i].length; j++){
                 if(storage[i][j] != null){
                     counter++;
                 }
+            }
             }
         }
         return counter;
