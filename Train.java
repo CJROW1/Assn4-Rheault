@@ -42,7 +42,6 @@ public class Train {
             curr = curr.getNext();
         }
         //set the next car to the new one
-        curr.setNext(null);
         curr.setNext(car);
     }
     }
@@ -320,10 +319,10 @@ public class Train {
                     if(location != null){
                         found = true;
                     }
-                    if(!found){
+                }
+                if(!found){
                         curr = curr.getNext();
                     }
-                }
             }
         }
         return curr;
@@ -347,10 +346,10 @@ public class Train {
                     if(location != null){
                         found = true;
                     }
+                }
                     if(!found){
                         curr = curr.getNext();
                     }
-                }
             }
         }
         return curr;
