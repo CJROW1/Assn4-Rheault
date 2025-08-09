@@ -22,7 +22,7 @@ public class LuggageCar implements iTrainCar {
             throw new IllegalArgumentException();
         }
         //initialize the storage to have the number of compartments rows
-        storage = new Luggage[numCompartments][];
+        this.storage = new Luggage[numCompartments][];
     }
 
     //get the maximum number of initialized luggage spots in this car
@@ -73,7 +73,7 @@ public class LuggageCar implements iTrainCar {
             throw new IllegalArgumentException();
         }else{
         //if the index exists and isnt initialized go and initialize it
-        storage[index] = new Luggage[size];
+        this.storage[index] = new Luggage[size];
         initialized = true;
         }
         return initialized;
