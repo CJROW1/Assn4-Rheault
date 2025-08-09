@@ -85,6 +85,6 @@ public class FuelCar implements iTrainCar {
     }
     //creates a to string for the fuel car showing how much it has and its max
     public String toString(){
-        return String.format("Fuel car (%d/%d)", currentFuelLevel, maxFuelLevel);
+        return String.format("FuelCar (%d/%d)", currentFuelLevel, maxFuelLevel);
     }
 }
