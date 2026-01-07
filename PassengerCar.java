@@ -1,5 +1,5 @@
 /*
- * Candidate
+ * Candidate heheheheheeh
  *
  * COMP 1020 SECTION A01
  * Simon Wermie

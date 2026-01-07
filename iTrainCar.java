@@ -1,5 +1,5 @@
 public interface iTrainCar {
-    String PASSENGER = "Passenger";
+    String PASSENGER = "Passenger ";
     String LUGGAGE = "Luggage";
     String FUEL = "Fuel";
     
